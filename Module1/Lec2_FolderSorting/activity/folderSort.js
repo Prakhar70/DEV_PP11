@@ -1,6 +1,6 @@
 let fs = require("fs");
 
-let extensionsMapping = require("./util.js");
+let extensionsMapping = require("./utils.js");
 
 
 let testFolderPath = "./Downloads";
