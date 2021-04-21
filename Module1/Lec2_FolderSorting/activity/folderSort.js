@@ -2,62 +2,57 @@ let fs = require("fs");
 
 let extensionsMapping = require("./utils.js");
 
-let testFolderPath = "./Downloads";
-let allFiles = fs.readdirSync(testFolderPath);
-// console.log(allFiles);
-
-for(let i=0 ; i<allFiles.length ; i++){
-    sortFile(allFiles[i]);
-}
-
-
-function getExtension(file){
-    file = file.split(".");
-    return file[1];
-}
-
-// {
-//     "Documents" : ["doc" , "pdf" , "txt" ],
-//     "Images": ["img" , "jpg" , "gif" , "png"],
-//     "Audio": ["mp3"] ,
-//     "Video": ["mp4" , "mkv"],
-//     "Applications" : ["exe"]
-// }
-
-function checkExtensionFolder(extension){
-    // extension = "doc";
-    let extensionFolderName = testFolderPath;
-    for(let key in extensionsMapping){
-        let extensions = extensionsMapping[key];
-        if(extensions.includes(extension)){
-            extensionFolderName = extensionFolderName+"/"+key;
-            break;
+function sortFolder(testFolderPath){
+    
+    let allFiles = fs.readdirSync(testFolderPath);
+    for(let i=0 ; i<allFiles.length ; i++){
+        if(fs.statSync(testFolderPath+"/"+allFiles[i]).isFile()){
+                sortFile(allFiles[i]);
+            }
+        else{
+            sortFolder(testFolderPath+"/"+allFiles[i]);
         }
     }
-    // extensionFolderName = 'Documents'
-    // "./Downloads"
-    // let folderToBeChecked = testFolderPath+"/"+extensionFolderName;
-    // "./Downloads/Documents"
-    let isFolderExist =  fs.existsSync(extensionFolderName);
-    if(!isFolderExist){
-        fs.mkdirSync(extensionFolderName);
+
+
+    function getExtension(file){
+        file = file.split(".");
+        return file[1];
     }
-    return extensionFolderName;
+    function checkExtensionFolder(extension){
+        // extension = "doc";
+        let extensionFolderName = testFolderPath;
+        for(let key in extensionsMapping){
+            let extensions = extensionsMapping[key];
+            if(extensions.includes(extension)){
+                extensionFolderName = extensionFolderName+"/"+key;
+                break;
+            }
+        }
+
+        let isFolderExist =  fs.existsSync(extensionFolderName);
+        if(!isFolderExist){
+            fs.mkdirSync(extensionFolderName);
+        }
+        return extensionFolderName;
+    }
+
+    function moveFile(file , extensionFolderName){
+        let sourceFile = testFolderPath+"/"+file;
+        let destinationFile = extensionFolderName+"/"+file;
+        // copy file from the source path to destination path !!
+        fs.copyFileSync(sourceFile , destinationFile);
+        // then delete file from the source path !!
+        fs.unlinkSync(sourceFile);
+    }
+
+
+    function sortFile(file){
+        let extension = getExtension(file);
+        console.log(extension);
+        let extensionFolderName = checkExtensionFolder(extension);
+        moveFile(file , extensionFolderName );
+    }
 }
 
-function moveFile(file , extensionFolderName){
-    let sourceFile = testFolderPath+"/"+file;
-    let destinationFile = extensionFolderName+"/"+file;
-    // copy file from the source path to destination path !!
-    fs.copyFileSync(sourceFile , destinationFile);
-    // then delete file from the source path !!
-    fs.unlinkSync(sourceFile);
-}
-
-
-function sortFile(file){
-    let extension = getExtension(file);
-    // console.log(extension);
-    let extensionFolderName = checkExtensionFolder(extension);
-    moveFile(file , extensionFolderName );
-}
+sortFolder("./Downloads");
