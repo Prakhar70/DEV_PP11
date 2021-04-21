@@ -22,12 +22,17 @@ function sortFolder(testFolderPath){
     function checkExtensionFolder(extension){
         // extension = "doc";
         let extensionFolderName = testFolderPath;
+        let flag=0;
         for(let key in extensionsMapping){
             let extensions = extensionsMapping[key];
             if(extensions.includes(extension)){
                 extensionFolderName = extensionFolderName+"/"+key;
+                flag=1;
                 break;
             }
+        }
+        if (flag==0){
+            extensionFolderName=extensionFolderName+'/'+"Others";
         }
 
         let isFolderExist =  fs.existsSync(extensionFolderName);
@@ -45,8 +50,6 @@ function sortFolder(testFolderPath){
         // then delete file from the source path !!
         fs.unlinkSync(sourceFile);
     }
-
-
     function sortFile(file){
         let extension = getExtension(file);
         console.log(extension);
@@ -55,4 +58,4 @@ function sortFolder(testFolderPath){
     }
 }
 
-sortFolder("./Downloads");
+sortFolder(".");

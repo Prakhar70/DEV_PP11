@@ -3,5 +3,5 @@ module.exports={
     "Images":["img","jpg","gif","png"],
     "Audio":["mp3"],
     "Video":["mp4","mkv"],
-    "Applications":["exe"]
+    "Applications":["exe"],
 }
