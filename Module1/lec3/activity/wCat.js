@@ -1,5 +1,6 @@
 const { applySFlag, applyBFlag, applyNFlag, getFilesData } = require("./utils.js")
 let contents = process.argv.slice(2);
+// console.log(process);
 
 const flags = [];
 const files = [];

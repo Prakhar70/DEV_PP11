@@ -17,10 +17,7 @@ function getFilesData(files) {
 function applySFlag(f1KaData) {
     let emptyIncluded = false;
     let removedSpaces = [];
-    // let prak=f1KaData.split("");
-    // console.log(prak);
     let splittedData = f1KaData.split("\r\n");
-    console.log(splittedData);
     for (let i = 0; i < splittedData.length; i++) {
         if (splittedData[i] == "" && emptyIncluded == false) {
             removedSpaces.push(splittedData[i]);
@@ -36,7 +33,6 @@ function applySFlag(f1KaData) {
 function applyBFlag(data){
     count=0;
     let splittedData = data.split("\r\n");
-    // console.log(splittedData);
     for(let i=0;i<splittedData.length;i++){
         if(splittedData[i]!=""){
             splittedData[i]=`${count}. ${splittedData[i]}`;
@@ -49,7 +45,6 @@ function applyBFlag(data){
 function applyNFlag(data){
     count=0;
     let splittedData = data.split("\r\n");
-    // console.log(splittedData);
     for(let i=0;i<splittedData.length;i++){
             splittedData[i]=`${count}. ${splittedData[i]}`;
             count++;
