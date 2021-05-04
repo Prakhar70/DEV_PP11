@@ -11,6 +11,8 @@ for (let i = 0; i < contents.length; i++) {
         files.push(contents[i]);
     }
 }
+console.log(files);
+console.log(flags);
 
 let filesData = getFilesData(files);
 if (flags.includes("-s")) {
