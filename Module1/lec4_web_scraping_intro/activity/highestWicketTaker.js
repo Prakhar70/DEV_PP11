@@ -1,8 +1,8 @@
-let matchLink = "https://www.espncricinfo.com/series/ipl-2020-21-1210595/delhi-capitals-vs-royal-challengers-bangalore-55th-match-1216505/full-scorecard";
-
+let matchLink = "https://www.espncricinfo.com/series/bangladesh-tour-of-sri-lanka-2021-1255822/sri-lanka-vs-bangladesh-2nd-test-1255829/full-scorecard"
 const request = require("request");
 const fs = require("fs");
 const cheerio = require("cheerio");
+
 // request is a high order function
 
 request( matchLink , cb );
@@ -14,31 +14,34 @@ function cb(error , response , data){
 }
 
 
-
-
-// let htmlKaData = fs.readFileSync("./match.html" , "utf8");
-
-
 function getHighestWicketTaker(data){
     let myDocument = cheerio.load(data);
     let bothBowlingTables = myDocument(".table.bowler");
+    
     // {
     //     "0" : {bowling table} ,
     //     "1" : {bowling table}
     // }
+    // console.log(bothBowlingTables);
     
     let highestWicketTakenName;
     let highestWicketsTaken;
     let economyOfHighestWicketTaker;
+    // console.log(bothBowlingTables.length);
     
     for(let i=0 ; i<bothBowlingTables.length ; i++){
         let bowlingTable = myDocument(bothBowlingTables[i]);
-        let allTableRows = bowlingTable.find("tbody tr");
-        // {
-        //     "0" : {tr},
-        //     "1" : {tr},
-        //     "2" : {tr}
-        // }
+        // fs.writeFileSync("./bowlingTable.html",bowlingTable.html());
+        // console.log(bowlingTable);
+        let allTableRows = bowlingTable.find("tbody tr")
+        // fs.writeFileSync("./bowlingTable.html",allTableRows.html());
+        // console.log(allTableRows);
+        
+    //     // {
+    //     //     "0" : {tr},
+    //     //     "1" : {tr},
+    //     //     "2" : {tr}
+    //     // }
         for(let j=0 ; j<allTableRows.length ; j++){
              // wicket "4"
             // name "0"
