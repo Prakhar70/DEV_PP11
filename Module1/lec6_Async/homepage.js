@@ -16,6 +16,6 @@ function processData(html){
     // console.log(aTag);
     // console.log(    aTag.attr("href")    );
     let allMatchesLink = "https://www.espncricinfo.com" + aTag["0"].attribs.href;
-    console.log(allMatchesLink);
+    // console.log(allMatchesLink);
     getAllMatches(allMatchesLink);
 }
