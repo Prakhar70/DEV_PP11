@@ -5,12 +5,12 @@ const cheerio = require("cheerio");
 const getAllMatches = require("./allMatches");
 
 
-request(matchLink , function(err , res , data){
+request(matchLink, function (err, res, data) {
     processData(data);
 })
 
 
-function processData(html){
+function processData(html) {
     let myDocument = cheerio.load(html);
     let aTag = myDocument(".widget-items.cta-link a");
     // console.log(aTag);
