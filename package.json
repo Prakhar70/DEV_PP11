@@ -19,9 +19,13 @@
   "homepage": "https://github.com/Prakhar70/DEV_PP11#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.6",
+    "express": "^4.17.1",
     "json2xls": "^0.1.2",
+    "node-cron": "^2.0.3",
+    "nodemailer": "^2.7.2",
     "puppeteer": "^9.1.1",
     "request": "^2.88.2",
+    "shelljs": "^0.8.4",
     "xls-to-json": "^2.1.0"
   }
 }
