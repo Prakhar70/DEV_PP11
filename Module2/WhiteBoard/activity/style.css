@@ -3,81 +3,118 @@
     margin: 0px;
     padding: 0px;
     overflow: hidden;
-}
-
-.tools-container {
+  }
+  
+  .tools-container {
     height: 100px;
-    /* background: aquamarine; */
+    background: aliceblue;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.tools-content {
-    height: 70%;
-    width: 70%;
-    /* border: 1px solid; */
+  }
+  
+  .drawing-container {
+  }
+  
+  #canvas {
+  }
+  .sticky {
+    position: absolute;
+  
+    top: 214px;
+  
+    left: 400px;
+  
+    height: 192px;
+  
+    width: 220px;
+  
+    /* background: turquoise; */
+  
+    /* display: flex; */
+  
+    /* flex-direction: column; */
+  
+    /* align-items: flex-start; */
+  
+    /* justify-content: space-around; */
+  }
+  .sticky-header div {
+    height: 58%;
+  
+    width: 8%;
+  
+    /* background: #e91e63; */
+  
+    margin: 4px;
+  
+    border-radius: 104px;
+  }
+  .sticky-header {
+    height: 15%;
+  
+    width: 100%;
+  
+    background: #fab1a0;
+  
+    display: flex;
+  
+    justify-content: flex-end;
+  
+    align-items: center;
+  
+    flex-direction: row;
+  }
+  .minimise {
+    background: lightskyblue;
+  }
+  .close {
+    background: red;
+  }
+  .sticky-content {
+    outline: none;
+  
+    height: 85%;
+  
+    width: 100%;
+  
+    background: #81ecec;
+  
+    border-bottom-right-radius: 32px;
+  
+    /* margin: 0px; */
+  
+    padding: 6px;
+  
+    font-size: 23px;
+  }
+  .sticky-image{
+      
+  height: 100%;
+      
+  width: 100%;
+      
+  object-fit: cover;
+  }
+  
+  .tools-content {
+    /* border: 1px solid red; */
+    height: 67%;
+    width: 77%;
     display: flex;
     justify-content: space-evenly;
+    background-color: #a6f7ff;
+    border-radius: 16px;
     align-items: center;
-    background: aliceblue;
-    border-radius: 10px;
-}
-
-.tool {
-    height: 55%;
-    width: 10%;
-}
-
-.tool img {
+  }
+  
+  .tool {
+    height: 60%;
+    width: 50%;
+  }
+  
+  .tool img {
     height: 100%;
     width: 100%;
-}
-
-.drawing-container {
-}
-
-#canvas {
-    /* background-color: aqua; */
-}
-
-.sticky {
-    position: absolute;
-    top: 200px;
-    left: 300px;
-    height: 200px;
-    width: 250px;
-    /* background: bisque; */
-}
-
-.sticky-header {
-    height: 13%;
-    background: lightcyan;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.sticky-header div {
-    height: 70%;
-    width: 7%;
-    margin-right: 10px;
-    border-radius: 50px;
-}
-
-.minimize {
-    background: lightskyblue;
-}
-
-.close {
-    background: lightcoral;
-}
-
-.sticky-content {
-    height: 87%;
-    /* border: 1px solid; */
-    border-bottom-right-radius: 20px;
-    background: lightsteelblue;
-    outline: none;
-    padding: 10px;
-}
+  }
+  
