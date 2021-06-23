@@ -1,5 +1,6 @@
-let stickynotes = document.querySelector("#StickyNote");
-stickynotes.addEventListener("click", function (e) {
+let sticky = document.querySelector("#sticky");
+
+sticky.addEventListener("click", function(e){
   addSticky();
 });
 
@@ -7,64 +8,69 @@ function addSticky(imageElement) {
   let stickyDiv = document.createElement("div");
   stickyDiv.classList.add("sticky");
   stickyDiv.innerHTML = `<div class="sticky-header">
-    <div class="minimise"></div>
+    <div class="minimize"></div>
     <div class="close"></div>
-</div>`;
-let minimize = stickyDiv.querySelector(".minimise");
-let close = stickyDiv.querySelector(".close");
-let stickyheader = stickyDiv.querySelector(".sticky-header");
-let stickyContent;
-
-if(imageElement){
-    let stickyImageDiv=document.createElement("div");
-    stickyImageDiv.classList.add(".sticky-image-div");
+  </div>`;
+  let minimize = stickyDiv.querySelector(".minimize");
+  let close = stickyDiv.querySelector(".close");
+  let stickyHeader = stickyDiv.querySelector(".sticky-header");
+  let stickyContent;
+  if(imageElement){
+    let stickyImageDiv = document.createElement("div");
+    stickyImageDiv.classList.add("sticky-image-div");
     stickyDiv.append(stickyImageDiv);
     stickyImageDiv.append(imageElement);
-    stickyContent=stickyImageDiv;
-}
-else{
-    let stickyContentDiv=document.createElement("div");
-    stickyContentDiv.classList.add("sticky-content");
-    stickyContentDiv.setAttribute("contenteditable" , "true");
-    stickyDiv.append(stickyContentDiv);
-    stickyContent=stickyContentDiv;
-}
-  minimize.addEventListener("click", function (e) {
+    stickyContent = stickyImageDiv;
+  }else{
+     // <div class="sticky-content" contenteditable="true"></div>
+     let stickyContentDiv = document.createElement("div");
+     stickyContentDiv.classList.add("sticky-content");
+     stickyContentDiv.setAttribute("contenteditable" , "true");
+     stickyDiv.append(stickyContentDiv);
+     stickyContent = stickyContentDiv;
+  }
+
+  minimize.addEventListener("click", function () {
     stickyContent.style.display == "none"
       ? (stickyContent.style.display = "block")
       : (stickyContent.style.display = "none");
   });
-  close.addEventListener("click", function (e) {
+
+  close.addEventListener("click", function () {
     stickyDiv.remove();
   });
 
   let stickyHold = false;
-  let intialX;
-  let intialY;
-  stickyheader.addEventListener("mousedown", function (e) {
-    stickyHold = true;
-    intialX = e.clientX;
-    intialY = e.clientY;
+  let initialX;
+  let initialY;
+  stickyHeader.addEventListener("mousedown", function (e) {
+      stickyHold=true;
+      initialX = e.clientX;
+      initialY = e.clientY;
   });
-  stickyheader.addEventListener("mousemove", function (e) {
-    if (stickyHold) {
-      let finalX = e.clientX;
-      let finalY = e.clientY;
 
-      let dx = finalX - intialX;
-      let dy = finalY - intialY;
-
-      let { top, left } = stickyDiv.getBoundingClientRect();
-      stickyDiv.style.top = top + dy + "px";
-      stickyDiv.style.left = left + dx + "px";
-
-      intialX = finalX;
-      intialY = finalY;
-    }
+  stickyHeader.addEventListener("mousemove", function (e) {
+      if(stickyHold){
+          let finalX = e.clientX;
+          let finalY = e.clientY;
+    
+          let dx = finalX - initialX;
+          let dy = finalY - initialY;
+    
+          let {top , left} = stickyDiv.getBoundingClientRect();
+          //   sticky => top + dy
+          //  sticky => left + dx
+          stickyDiv.style.top = top + dy + "px";
+          stickyDiv.style.left = left +dx + "px";
+    
+          initialX = finalX;
+          initialY = finalY;
+      }
   });
-  stickyheader.addEventListener("mouseup", function (e) {
-    stickyHold = false;
+
+  stickyHeader.addEventListener("mouseup", function (e) {
+      stickyHold = false;
   });
-  
+
   document.body.append(stickyDiv);
 }
