@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="style.css">
     <!-- font awesome css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google fonts code -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"> 
 </head>
 <body>
     <div class="header">
@@ -29,20 +32,12 @@
         </div>
     </div>
     <div class="tickets-container">
-        <!-- <div class="ticket">
-            <div class="ticket_color_head"></div>
-            <div class="ticket_code_delete">
-                <div class="code">#121213123</div>
-                <div class="delete_ticket">
-                    <i class="fas fa-trash-alt"></i>
-                </div>
-            </div>
-            <div class="show-ticket-content"></div>
-        </div> -->
-        
-        
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/short-unique-id@4.3.3/dist/short-unique-id.min.js"></script>
+    <script>
+        let uuid = new ShortUniqueId();
+    </script>
+    <script src="./db.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>
