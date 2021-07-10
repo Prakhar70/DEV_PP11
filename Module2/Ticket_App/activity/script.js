@@ -4,10 +4,6 @@ let closeModal = document.querySelector(".close-modal");
 let ticketModalOpen = false;
 let isTextTyped = false;
 
-
-
-
-
 for (let i = 0; i < allFilters.length; i++) {
   allFilters[i].addEventListener("click", selectFilter);
 }
@@ -16,16 +12,17 @@ openModal.addEventListener("click", openTicketModal);
 closeModal.addEventListener("click", closeTicketModal);
 
 function selectFilter(e) {
-  if(e.target.classList.contains("active-filter")){
+  if (e.target.classList.contains("active-filter")) {
     // ticket append are on basis of some filter
     e.target.classList.remove("active-filter");
     // append all tickets
     ticketsContainer.innerHTML = "";
     loadTickets();
-  }
-  else{
-    if(document.querySelector(".active-filter")){
-      document.querySelector(".active-filter").classList.remove("active-filter");
+  } else {
+    if (document.querySelector(".active-filter")) {
+      document
+        .querySelector(".active-filter")
+        .classList.remove("active-filter");
     }
     e.target.classList.add("active-filter");
     ticketsContainer.innerHTML = "";
@@ -79,19 +76,20 @@ function closeTicketModal(e) {
 
 function handleKeyPress(e) {
   if (e.key == "Enter" && isTextTyped && e.target.textContent) {
-    let filterSelected = document.querySelector(".selected-filter").classList[1];
+    let filterSelected =
+      document.querySelector(".selected-filter").classList[1];
     let ticketId = uuid();
     let ticketInfoObject = {
       ticketFilter: filterSelected,
       ticketValue: e.target.textContent,
-      ticketId : ticketId
+      ticketId: ticketId,
     };
     appendTicket(ticketInfoObject);
     closeModal.click();
     saveTicketToDB(ticketInfoObject);
   }
 
-  if(!isTextTyped) {
+  if (!isTextTyped) {
     isTextTyped = true;
     e.target.textContent = "";
   }
